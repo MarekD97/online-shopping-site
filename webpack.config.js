@@ -10,17 +10,18 @@ module.exports = {
   entry: "./src/index.tsx",
   devServer: {
     hot: true,
+    historyApiFallback: true,
   },
   target: "web",
   output: {
     filename: "bundle.[hash].js",
     path: path.resolve(__dirname, "dist"),
+    publicPath: "/",
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/index.html",
     }),
-    isDevelopment && new webpack.HotModuleReplacementPlugin(),
     isDevelopment && new ReactRefreshWebpackPlugin(),
   ],
   resolve: {
