@@ -36,7 +36,7 @@ const Details = ({ product }: DetailsProps) => {
           {product.rating}
           <div className="flex items-center">
             <span className="text-2xl font-bold mr-4">
-              ${product.price / 2}
+              ${(product.price / 100).toFixed(2)}
             </span>
             <span className="text-lg font-semibold text-red-600">
               -{product.discountPercentage}%

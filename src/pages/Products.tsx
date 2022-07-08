@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
+import Card from "../components/Card";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 
@@ -17,17 +19,18 @@ const Products = () => {
   return (
     <div>
       <Navbar />
-      <ul>
-        {products.map((product) => (
-          <li key={product.id}>
-            <span>{product.title}</span>
-            <img src={product.images[0]} alt="" />
-            <button onClick={() => dispatch(deleteProduct(product.id))}>
-              Delete
-            </button>
-          </li>
+      <div className="grid md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 container mx-auto py-10 gap-4">
+        {products.map(({ id, title, thumbnail, price, rating }) => (
+          <Link to={`/products/${id}`}>
+            <Card
+              title={title}
+              thumbnail={thumbnail}
+              price={price}
+              rating={rating}
+            />
+          </Link>
         ))}
-      </ul>
+      </div>
       <Footer />
     </div>
   );
