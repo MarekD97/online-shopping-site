@@ -4,10 +4,11 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { Provider } from "react-redux";
 import { store } from "./app/store";
+import "./index.css";
 
 import Home from "./pages/Home";
 import Products from "./pages/Products";
-import "./index.css";
+import ProductDetails from "./pages/ProductDetails";
 
 const container = document.getElementById("root");
 const root = createRoot(container!);
@@ -18,6 +19,7 @@ root.render(
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="products" element={<Products />} />
+        <Route path="products/:id" element={<ProductDetails />} />
       </Routes>
     </BrowserRouter>
   </Provider>

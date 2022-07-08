@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
-import Footer from "../components/Footer/Footer";
-import Navbar from "../components/Navbar/Navbar";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 
 import { setProducts, deleteProduct } from "../features/products/productsSlice";
 
