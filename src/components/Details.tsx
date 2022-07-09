@@ -1,26 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ProductState } from "../features/products/productsSlice";
+import RatingStars from "./RatingStars";
 
 interface DetailsProps {
   product: ProductState;
 }
 
-const Details = ({ product }: DetailsProps) => {
-  const [activeImage, setActiveImage] = useState(product.images[0]);
-  const [quantity, setQuantity] = useState(1);
+const Details = ({ product }: DetailsProps): JSX.Element => {
+  const [activeImage, setActiveImage] = useState<string>(product.images[0]);
+  const [quantity, setQuantity] = useState<number>(1);
 
-  const increment = () => setQuantity((state) => state + 1);
+  const increment = () => setQuantity((state: number) => state + 1);
   const decrement = () =>
-    setQuantity((state) => (state > 1 ? state - 1 : state));
+    setQuantity((state: number) => (state > 1 ? state - 1 : state));
 
   return (
     <div className="container mx-auto flex flex-col md:flex-row py-10">
       <div className="flex-1 p-2">
         <img src={activeImage} alt="" className="md:h-96" />
         <div className="flex justify-between mt-4 cursor-pointer">
-          {product.images.map((image: string) => (
+          {product.images.map((image: string, index: number) => (
             <img
+              key={index}
               src={image}
               alt=""
               className="h-16"
@@ -32,8 +34,9 @@ const Details = ({ product }: DetailsProps) => {
       <div className="flex-1 p-2">
         <div className="mb-2">
           <h2 className="text-4xl font-bold uppercase">{product.title}</h2>
-          {/* Stars */}
-          {product.rating}
+          <div className="my-4">
+            <RatingStars rating={product.rating} />
+          </div>
           <div className="flex items-center">
             <span className="text-2xl font-bold mr-4">
               ${(product.price / 100).toFixed(2)}

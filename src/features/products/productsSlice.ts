@@ -22,9 +22,10 @@ export const productsSlice = createSlice({
     initialState,
     reducers: {
         setProducts: (state, action: PayloadAction<ProductState[]>) => {
-            action.payload.forEach((product: ProductState) => {
-                state.push(product);
-            })
+            return action.payload;
+        },
+        clearProducts: (state, action: PayloadAction) => {
+            return [];
         },
         addProduct: (state, action: PayloadAction<ProductState>) => {
             state.push(action.payload);
@@ -35,7 +36,7 @@ export const productsSlice = createSlice({
     }
 })
 
-export const { addProduct, setProducts, deleteProduct } = productsSlice.actions;
+export const { addProduct, clearProducts, setProducts, deleteProduct } = productsSlice.actions;
 
 export const getProducts = (state: RootState) => state.products;
 

@@ -1,4 +1,5 @@
 import React from "react";
+import RatingStars from "./RatingStars";
 
 interface CardProps {
   title: string;
@@ -7,7 +8,7 @@ interface CardProps {
   rating: number;
 }
 
-const Card = ({ title, thumbnail, price, rating }: CardProps) => {
+const Card = ({ title, thumbnail, price, rating }: CardProps): JSX.Element => {
   return (
     <div className="flex flex-col justify-end">
       <div className="relative">
@@ -18,7 +19,9 @@ const Card = ({ title, thumbnail, price, rating }: CardProps) => {
       </div>
       <div className="p-2 text-center">
         <h2 className="my-4 text-2xl font-bold">{title}</h2>
-        <span>{rating}</span>
+        <div className="flex justify-center">
+          <RatingStars rating={rating} />
+        </div>
       </div>
     </div>
   );

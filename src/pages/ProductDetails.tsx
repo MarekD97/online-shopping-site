@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import CircularLoadingIndicator from "../components/CircularLoadingIndicator";
 
 import Details from "../components/Details";
 import Footer from "../components/Footer";
@@ -21,7 +22,13 @@ const ProductDetails = () => {
   return (
     <div>
       <Navbar />
-      {product && <Details product={product} />}
+      {product === undefined ? (
+        <div className="grid justify-center my-8">
+          <CircularLoadingIndicator />
+        </div>
+      ) : (
+        <Details product={product} />
+      )}
       <Footer />
     </div>
   );
