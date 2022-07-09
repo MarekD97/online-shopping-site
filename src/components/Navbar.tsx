@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { BsSearch } from "react-icons/bs";
+import { BsSearch, BsCart } from "react-icons/bs";
 
 interface NavigationLink {
   name: string;
@@ -21,11 +21,22 @@ const Navbar = () => {
         <div className="text-2xl font-bold uppercase my-2 md:my-auto">
           Fake Shop
         </div>
-        <div className="flex align-center border border-black my-2">
-          <input className="outline-none w-full md:w-64 p-2" type="text" />
-          <button className="p-2 transition-transform hover:scale-110">
-            <BsSearch style={{ width: "24px", height: "24px" }} />
-          </button>
+        <div className="flex align-center justify-end gap-2">
+          <div className="flex align-center w-full border border-black my-2">
+            <input className="outline-none w-full md:w-64 p-2" type="text" />
+            <button className="p-2 transition-transform hover:scale-110">
+              <BsSearch style={{ width: "24px", height: "24px" }} />
+            </button>
+          </div>
+          <Link
+            className="relative p-4 transition-transform hover:scale-110"
+            to="/cart"
+          >
+            <BsCart style={{ width: "24px", height: "24px" }} />
+            <span className="absolute bottom-1.5 -right-2 bg-sky-500 text-white text-xs font-semibold mr-2 px-1.5 py-0.5 rounded">
+              0
+            </span>
+          </Link>
         </div>
       </div>
       <div className="bg-sky-500">
