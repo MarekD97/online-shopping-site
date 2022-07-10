@@ -29,7 +29,7 @@ const Home = () => {
         </div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 justify-evenly m-2 p-2 border border-gray-300">
-        <div className="flex p-4 items-center gap-4">
+        <div className="flex p-4 lg:justify-center items-center gap-8">
           <BsTruck
             className="text-sky-500"
             style={{ width: "32px", height: "32px" }}
@@ -39,7 +39,7 @@ const Home = () => {
             <p className="text-gray-500">Order over $99</p>
           </span>
         </div>
-        <div className="flex p-4 items-center gap-4">
+        <div className="flex p-4 lg:justify-center items-center gap-8">
           <BsFillCartXFill
             className="text-sky-500"
             style={{ width: "32px", height: "32px" }}
@@ -49,7 +49,7 @@ const Home = () => {
             <p className="text-gray-500">If goods have problem</p>
           </span>
         </div>
-        <div className="flex p-4 items-center gap-4">
+        <div className="flex p-4 lg:justify-center items-center gap-8">
           <BsCreditCardFill
             className="text-sky-500"
             style={{ width: "32px", height: "32px" }}
@@ -59,7 +59,7 @@ const Home = () => {
             <p className="text-gray-500">100% secure payment</p>
           </span>
         </div>
-        <div className="flex p-4 items-center gap-4">
+        <div className="flex p-4 lg:justify-center items-center gap-8">
           <BsHeadset
             className="text-sky-500"
             style={{ width: "32px", height: "32px" }}
