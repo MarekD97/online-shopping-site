@@ -35,13 +35,13 @@ const Navbar = () => {
           </Link>
         </div>
       </div>
-      <div className="bg-sky-500">
+      <div className="bg-sky-500 py-2">
         <div className="container mx-auto flex justify-center sm:justify-start flex-wrap gap-2 md:gap-8">
           {navigation.map((item, i) => (
             <Link
               key={i}
               to={item.to}
-              className="text-white font-bold hover:underline px-4 py-2"
+              className="text-white text-lg font-bold hover:underline p-2"
             >
               {item.name}
             </Link>
