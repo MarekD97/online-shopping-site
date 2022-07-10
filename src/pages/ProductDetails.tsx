@@ -21,7 +21,6 @@ const ProductDetails = () => {
   }, [setProduct]);
   return (
     <div>
-      <Navbar />
       {product === undefined ? (
         <div className="grid justify-center my-8">
           <CircularLoadingIndicator />
@@ -29,7 +28,6 @@ const ProductDetails = () => {
       ) : (
         <Details product={product} />
       )}
-      <Footer />
     </div>
   );
 };

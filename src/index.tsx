@@ -9,6 +9,7 @@ import "./index.css";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
 import ProductDetails from "./pages/ProductDetails";
+import Layout from "./components/Layout";
 
 const container = document.getElementById("root");
 const root = createRoot(container!);
@@ -16,11 +17,13 @@ const root = createRoot(container!);
 root.render(
   <Provider store={store}>
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="products" element={<Products />} />
-        <Route path="products/:id" element={<ProductDetails />} />
-      </Routes>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="products" element={<Products />} />
+          <Route path="products/:id" element={<ProductDetails />} />
+        </Routes>
+      </Layout>
     </BrowserRouter>
   </Provider>
 );

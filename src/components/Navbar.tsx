@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { BsSearch, BsCart } from "react-icons/bs";
+import { BsCart } from "react-icons/bs";
+import SearchBar from "./SearchBar";
 
 interface NavigationLink {
   name: string;
@@ -22,12 +23,7 @@ const Navbar = () => {
           Fake Shop
         </div>
         <div className="flex align-center justify-end gap-2">
-          <div className="flex align-center w-full border border-black my-2">
-            <input className="outline-none w-full md:w-64 p-2" type="text" />
-            <button className="p-2 transition-transform hover:scale-110">
-              <BsSearch style={{ width: "24px", height: "24px" }} />
-            </button>
-          </div>
+          <SearchBar />
           <Link
             className="relative p-4 transition-transform hover:scale-110"
             to="/cart"

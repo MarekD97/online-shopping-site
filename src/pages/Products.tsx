@@ -4,8 +4,6 @@ import { useAppDispatch, useAppSelector } from "../app/hooks";
 import Card from "../components/Card";
 import CategoryList from "../components/CategoryList";
 import CircularLoadingIndicator from "../components/CircularLoadingIndicator";
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
 
 import { setProducts } from "../features/products/productsSlice";
 
@@ -15,17 +13,20 @@ const Products = () => {
 
   const [limit, setLimit] = useState<number>(24);
   const [skip, setSkip] = useState<number>(0);
+  const [total, setTotal] = useState<number>(0);
 
   useEffect(() => {
     fetch(
       `https://dummyjson.com/products?limit=${limit}&skip=${skip}&select=id,title,thumbnail,price,rating`
     )
       .then((res) => res.json())
-      .then((res) => dispatch(setProducts(res.products)));
-  }, [limit]);
+      .then((res) => {
+        dispatch(setProducts(res.products));
+        setTotal(res.total);
+      });
+  }, [limit, skip]);
   return (
     <div>
-      <Navbar />
       <div className="flex flex-col sm:flex-row gap-4">
         <CategoryList />
         {products === undefined || products.length == 0 ? (
@@ -47,7 +48,7 @@ const Products = () => {
           </div>
         )}
       </div>
-      <div className="container my-4 flex justify-center">
+      <div className="flex justify-center gap-4 my-4 ">
         <div className="flex flex-wrap gap-4 mt-8">
           <div className="border border-gray-400">
             <span className="px-4 py-2">Products on page</span>
@@ -67,8 +68,52 @@ const Products = () => {
             })}
           </div>
         </div>
+        <div className="flex flex-wrap gap-4 mt-8">
+          <div className="border border-gray-400">
+            <span className="px-4 py-2">Page</span>
+            {skip > 0 && (
+              <button
+                className="px-4 py-2 border-l border-gray-400"
+                onClick={() =>
+                  setSkip((prev) => (prev >= limit ? prev - limit : prev))
+                }
+              >
+                &lt;
+              </button>
+            )}
+            {[...Array(Math.ceil(total / limit))].map(
+              (element: null, index: number) => {
+                return (
+                  <button
+                    key={index}
+                    className={`px-4 py-2 border-l border-gray-400 ${
+                      Math.ceil(skip / limit) === index
+                        ? "bg-sky-500 text-white font-bold"
+                        : ""
+                    }`}
+                    onClick={() => setSkip(index * limit)}
+                  >
+                    {index + 1}
+                    {/* {skip} */}
+                  </button>
+                );
+              }
+            )}
+            {skip + limit < total && (
+              <button
+                className="px-4 py-2 border-l border-gray-400"
+                onClick={() =>
+                  setSkip((prev) =>
+                    prev + limit < total ? prev + limit : prev
+                  )
+                }
+              >
+                &gt;
+              </button>
+            )}
+          </div>
+        </div>
       </div>
-      <Footer />
     </div>
   );
 };
