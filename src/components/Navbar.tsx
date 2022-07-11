@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { BsCart } from "react-icons/bs";
 import SearchBar from "./SearchBar";
+import { useAppSelector } from "../app/hooks";
 
 interface NavigationLink {
   name: string;
@@ -16,6 +17,7 @@ const navigation: NavigationLink[] = [
 ];
 
 const Navbar = () => {
+  const { totalQuantity } = useAppSelector((state) => state.cart);
   return (
     <nav>
       <div className="container mx-auto flex flex-col md:flex-row justify-between align-center p-2">
@@ -29,9 +31,11 @@ const Navbar = () => {
             to="/cart"
           >
             <BsCart style={{ width: "24px", height: "24px" }} />
-            <span className="absolute bottom-1.5 -right-2 bg-sky-500 text-white text-xs font-semibold mr-2 px-1.5 py-0.5 rounded">
-              0
-            </span>
+            {totalQuantity > 0 && (
+              <span className="absolute bottom-1.5 -right-2 bg-sky-500 text-white text-xs font-semibold mr-2 px-1.5 py-0.5 rounded">
+                {totalQuantity}
+              </span>
+            )}
           </Link>
         </div>
       </div>

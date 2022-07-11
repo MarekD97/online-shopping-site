@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { addProduct } from "../features/cart/cartSlice";
 import { ProductState } from "../features/products/productsSlice";
+import PrimaryButton from "./PrimaryButton";
 import RatingStars from "./RatingStars";
 
 interface DetailsProps {
@@ -8,6 +11,9 @@ interface DetailsProps {
 }
 
 const Details = ({ product }: DetailsProps): JSX.Element => {
+  const cart = useAppSelector((state) => state.cart);
+  const dispatch = useAppDispatch();
+
   const [activeImage, setActiveImage] = useState<string>(product.images[0]);
   const [quantity, setQuantity] = useState<number>(1);
 
@@ -39,7 +45,7 @@ const Details = ({ product }: DetailsProps): JSX.Element => {
           </div>
           <div className="flex items-center">
             <span className="text-2xl font-bold mr-4">
-              ${(product.price / 100).toFixed(2)}
+              ${product.price.toFixed(2)}
             </span>
             <span className="text-lg font-semibold text-red-600">
               -{product.discountPercentage}%
@@ -62,9 +68,21 @@ const Details = ({ product }: DetailsProps): JSX.Element => {
               +
             </button>
           </div>
-          <button className="bg-sky-500 px-8 py-2 text-white font-bold transition-colors hover:bg-sky-400">
+          <PrimaryButton
+            onClick={() =>
+              dispatch(
+                addProduct({
+                  id: product.id,
+                  thumbnail: product.thumbnail,
+                  title: product.title,
+                  price: product.price,
+                  quantity: quantity,
+                })
+              )
+            }
+          >
             Add to cart
-          </button>
+          </PrimaryButton>
         </div>
       </div>
     </div>
