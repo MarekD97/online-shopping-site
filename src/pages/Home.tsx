@@ -1,6 +1,4 @@
 import React from "react";
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
 
 import {
   BsTruck,
@@ -15,14 +13,14 @@ const Home = () => {
       <div className="flex flex-col md:flex-row gap-4 p-2 my-8">
         <div className="flex-1">
           <img
-            className="w-full object-cover object-left h-full"
+            className="w-full object-cover bg-gray-800 aspect-video"
             src="https://dummyjson.com/image/i/products/1/thumbnail.jpg"
             alt=""
           />
         </div>
         <div className="flex-1">
           <img
-            className="w-full object-cover object-left h-full"
+            className="w-full object-cover bg-gray-800 aspect-video"
             src="https://dummyjson.com/image/i/products/4/thumbnail.jpg"
             alt=""
           />
