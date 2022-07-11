@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { addProduct } from "../features/cart/cartSlice";
 import { ProductState } from "../features/products/productsSlice";
 import PrimaryButton from "./PrimaryButton";
+import QuantityButtons from "./QuantityButtons";
 import RatingStars from "./RatingStars";
 
 interface DetailsProps {
@@ -15,11 +15,15 @@ const Details = ({ product }: DetailsProps): JSX.Element => {
   const dispatch = useAppDispatch();
 
   const [activeImage, setActiveImage] = useState<string>(product.images[0]);
-  const [quantity, setQuantity] = useState<number>(1);
+  const [quantity, setQuantity] = useState(1);
 
-  const increment = () => setQuantity((state: number) => state + 1);
-  const decrement = () =>
+  const handleIncrement = () => setQuantity((state: number) => state + 1);
+  const handleDecrement = () =>
     setQuantity((state: number) => (state > 1 ? state - 1 : state));
+
+  const handleAddToCart = () => {
+    dispatch(addProduct({ ...product, quantity: quantity }));
+  };
 
   return (
     <div className="container mx-auto flex flex-col md:flex-row py-10">
@@ -57,32 +61,12 @@ const Details = ({ product }: DetailsProps): JSX.Element => {
           <p className="text-gray-600">{product.description}</p>
         </div>
         <div className="flex flex-wrap gap-4 mt-8">
-          <div className="border border-gray-400">
-            <button className="px-4 py-2" onClick={decrement}>
-              -
-            </button>
-            <span className="px-4 py-2 border-x border-gray-400">
-              {quantity}
-            </span>
-            <button className="px-4 py-2" onClick={increment}>
-              +
-            </button>
-          </div>
-          <PrimaryButton
-            onClick={() =>
-              dispatch(
-                addProduct({
-                  id: product.id,
-                  thumbnail: product.thumbnail,
-                  title: product.title,
-                  price: product.price,
-                  quantity: quantity,
-                })
-              )
-            }
-          >
-            Add to cart
-          </PrimaryButton>
+          <QuantityButtons
+            quantity={quantity}
+            onDecrement={handleDecrement}
+            onIncrement={handleIncrement}
+          />
+          <PrimaryButton onClick={handleAddToCart}>Add to cart</PrimaryButton>
         </div>
       </div>
     </div>
