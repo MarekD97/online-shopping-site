@@ -8,11 +8,20 @@ interface CardProps {
   rating: number;
 }
 
-const Card = ({ title, thumbnail, price, rating }: CardProps): JSX.Element => {
+const ProductCard = ({
+  title,
+  thumbnail,
+  price,
+  rating,
+}: CardProps): JSX.Element => {
   return (
     <div className="flex flex-col justify-end">
       <div className="relative">
-        <img src={thumbnail} alt="" className="h-96 object-cover m-auto" />
+        <img
+          src={thumbnail}
+          alt=""
+          className="w-full object-cover m-auto aspect-square bg-white"
+        />
         <span className="absolute top-4 px-4 py-2 bg-sky-200 text-sky-800 font-bold">
           ${price.toFixed(2)}
         </span>
@@ -27,4 +36,4 @@ const Card = ({ title, thumbnail, price, rating }: CardProps): JSX.Element => {
   );
 };
 
-export default Card;
+export default ProductCard;
