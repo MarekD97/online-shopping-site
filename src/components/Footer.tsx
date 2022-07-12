@@ -44,7 +44,7 @@ const Footer = () => {
         <div className="w-full h-px my-8 bg-gray-500"></div>
         <div className="flex flex-col md:flex-row justify-between">
           <div className="text-2xl font-bold uppercase my-2 md:my-auto">
-            Fake Shop
+            Online shopping
           </div>
           <div className="flex flex-col md:flex-row gap-4 font-light text-gray-500">
             <div>Terms and Conditions</div>

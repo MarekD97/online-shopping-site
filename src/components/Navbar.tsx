@@ -22,7 +22,7 @@ const Navbar = () => {
     <nav>
       <div className="container mx-auto flex flex-col md:flex-row justify-between align-center p-2">
         <div className="text-2xl font-bold uppercase my-2 md:my-auto">
-          Fake Shop
+          Online shopping
         </div>
         <div className="flex align-center justify-end gap-2">
           <SearchBar />

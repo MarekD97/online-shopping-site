@@ -1,7 +1,7 @@
 {
-  "name": "react-fake-shop",
+  "name": "online-shopping-site",
   "version": "1.0.0",
-  "description": "Fake shop created using React",
+  "description": "Online shopping site created using React",
   "main": "index.js",
   "scripts": {
     "start": "webpack serve",
