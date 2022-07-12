@@ -2,7 +2,7 @@ import React from "react";
 
 import { SiVisa, SiMastercard } from "react-icons/si";
 
-const Footer = () => {
+const Footer = (): JSX.Element => {
   return (
     <div className="bg-gray-900 text-white mt-12">
       <div className="container px-4 md:px-2 py-8 md:py-16 mx-auto">
