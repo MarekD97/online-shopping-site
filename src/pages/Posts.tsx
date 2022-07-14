@@ -41,7 +41,7 @@ const Posts = () => {
                 >
                   <Link
                     className="flex-1 text-lg font-bold hover:underline"
-                    to="/"
+                    to={`/posts/${post.id}`}
                   >
                     {post.title}
                   </Link>

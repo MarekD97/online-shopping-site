@@ -12,6 +12,7 @@ import ProductDetails from "./pages/ProductDetails";
 import Layout from "./components/Layout";
 import Cart from "./pages/Cart";
 import Posts from "./pages/Posts";
+import PostDetails from "./pages/PostDetails";
 
 const container = document.getElementById("root");
 const root = createRoot(container!);
@@ -26,6 +27,7 @@ root.render(
           <Route path="products/:id" element={<ProductDetails />} />
           <Route path="cart" element={<Cart />} />
           <Route path="posts" element={<Posts />} />
+          <Route path="posts/:id" element={<PostDetails />} />
         </Routes>
       </Layout>
     </BrowserRouter>
