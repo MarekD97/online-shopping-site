@@ -30,36 +30,38 @@ const Pagination = ({
   );
 
   return (
-    <div className="flex justify-center gap-4 bg-white p-8 sticky bottom-0">
+    <div className="flex justify-center gap-4 bg-white p-4 sticky bottom-0">
       <div className="flex flex-wrap gap-4">
-        <div className="border border-gray-400">
-          <span className="px-4 py-2">Page</span>
+        <span className="px-4 py-2 text-gray-500 text-lg font-semibold">
+          Pages
+        </span>
+        <button
+          className="px-4 py-2 text-gray-500 font-semibold border border-gray-300"
+          onClick={onPrevious}
+          disabled={currentPage === 1}
+        >
+          &lt;
+        </button>
+        {nums.map((number: number) => (
           <button
-            className="px-4 py-2 border-l border-gray-400"
-            onClick={onPrevious}
-            disabled={currentPage === 1}
+            key={number}
+            className={`px-4 py-2 font-semibold border border-gray-300 md:block ${
+              currentPage === number
+                ? "bg-sky-500 text-white block"
+                : "text-gray-500 hidden"
+            }`}
+            onClick={() => onPageChange(number)}
           >
-            &lt;
+            {number}
           </button>
-          {nums.map((number: number) => (
-            <button
-              key={number}
-              className={`px-4 py-2 border-l border-gray-400 ${
-                currentPage === number && "bg-sky-500 text-white"
-              }`}
-              onClick={() => onPageChange(number)}
-            >
-              {number}
-            </button>
-          ))}
-          <button
-            className="px-4 py-2 border-l border-gray-400"
-            onClick={onNext}
-            disabled={currentPage === totalPages}
-          >
-            &gt;
-          </button>
-        </div>
+        ))}
+        <button
+          className="px-4 py-2 text-gray-500 font-semibold border border-gray-300"
+          onClick={onNext}
+          disabled={currentPage === totalPages}
+        >
+          &gt;
+        </button>
       </div>
     </div>
   );
