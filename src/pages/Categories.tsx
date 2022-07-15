@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import CircularLoadingIndicator from "./CircularLoadingIndicator";
+import CircularLoadingIndicator from "../components/CircularLoadingIndicator";
 import { BsListUl } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
-const CategoryList = () => {
+const Categories = () => {
   const [categories, setCategories] = useState<string[]>([]);
 
   useEffect(() => {
@@ -42,4 +42,4 @@ const CategoryList = () => {
   );
 };
 
-export default CategoryList;
+export default Categories;

@@ -13,6 +13,7 @@ import Layout from "./components/Layout";
 import Cart from "./pages/Cart";
 import Posts from "./pages/Posts";
 import PostDetails from "./pages/PostDetails";
+import Categories from "./pages/Categories";
 
 const container = document.getElementById("root");
 const root = createRoot(container!);
@@ -28,6 +29,7 @@ root.render(
           <Route path="cart" element={<Cart />} />
           <Route path="posts" element={<Posts />} />
           <Route path="posts/:id" element={<PostDetails />} />
+          <Route path="categories" element={<Categories />} />
         </Routes>
       </Layout>
     </BrowserRouter>
