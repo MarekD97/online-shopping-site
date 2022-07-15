@@ -3,9 +3,9 @@ import { useAppDispatch, useAppSelector } from "../app/hooks";
 
 import { BsTrash } from "react-icons/bs";
 import {
-  addProduct,
+  addToCart,
   CardProductState,
-  deleteProduct,
+  deleteFromCart,
   setDiscount,
 } from "../features/cart/cartSlice";
 import PrimaryButton from "../components/PrimaryButton";
@@ -16,15 +16,15 @@ const Cart = () => {
   const dispatch = useAppDispatch();
 
   const handleDeleteProduct = (product: CardProductState) => {
-    dispatch(deleteProduct(product));
+    dispatch(deleteFromCart(product));
   };
 
   const handleIncrement = (product: CardProductState) => {
-    dispatch(addProduct({ ...product, quantity: 1 }));
+    dispatch(addToCart({ ...product, quantity: 1 }));
   };
 
   const handleDecrement = (product: CardProductState) => {
-    dispatch(deleteProduct({ ...product, quantity: 1 }));
+    dispatch(deleteFromCart({ ...product, quantity: 1 }));
   };
 
   const handleSubmitDiscountForm = (event: React.SyntheticEvent) => {

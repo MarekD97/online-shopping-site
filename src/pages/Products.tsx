@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
-import ProductCart from "../components/ProductCart";
+import ProductCart from "../features/products/ProductCart";
 import CircularLoadingIndicator from "../components/CircularLoadingIndicator";
 
 import { setProducts } from "../features/products/productsSlice";
@@ -17,9 +17,7 @@ const Products = (): JSX.Element => {
   const skip = (currentPage - 1) * 24;
 
   useEffect(() => {
-    fetch(
-      `https://dummyjson.com/products?limit=24&skip=${skip}&select=id,title,thumbnail,price,rating`
-    )
+    fetch(`https://dummyjson.com/products?limit=24&skip=${skip}`)
       .then((res) => res.json())
       .then((res) => {
         dispatch(setProducts(res.products));
