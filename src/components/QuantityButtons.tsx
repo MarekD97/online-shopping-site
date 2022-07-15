@@ -12,7 +12,7 @@ const QuantityButtons = ({
   onIncrement,
 }: QuantityButtonsProps): JSX.Element => {
   return (
-    <div className="border border-gray-400">
+    <div className="flex flex-nowrap border border-gray-400">
       <button className="px-4 py-2" onClick={onDecrement}>
         -
       </button>
