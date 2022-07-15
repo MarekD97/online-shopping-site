@@ -17,8 +17,10 @@ export interface PostsState {
   limit: number;
 }
 
+const initialPostsState: PostState[] = [];
+
 const initialState = {
-  posts: [],
+  posts: initialPostsState,
   total: 0,
   skip: 0,
   limit: 0,
@@ -39,7 +41,8 @@ const postsSlice = createSlice({
       return initialState;
     },
     addPost: (state: PostsState, action: PayloadAction<PostState>) => {
-      state.posts.push(action.payload);
+      const newPost = action.payload;
+      state.posts.push(newPost);
     },
     deletePost: (state: PostsState, action: PayloadAction<PostState>) => {
       state.posts.filter(({ id }: PostState) => id !== action.payload.id);

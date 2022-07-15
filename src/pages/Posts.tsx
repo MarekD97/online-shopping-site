@@ -6,6 +6,7 @@ import { clearPosts, setPosts, PostState } from "../features/posts/postsSlice";
 
 import { BsHandThumbsUp } from "react-icons/bs";
 import Pagination from "../components/Pagination";
+import PostCard from "../features/posts/PostCard";
 
 const Posts = () => {
   const posts = useAppSelector((state) => state.posts);
@@ -13,16 +14,12 @@ const Posts = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
 
-  const skip = (currentPage - 1) * 24;
-
   useEffect(() => {
+    const skip = (currentPage - 1) * 24;
     fetch(`https://dummyjson.com/posts?skip=${skip}&limit=24`)
       .then((res) => res.json())
       .then((res) => dispatch(setPosts(res)));
   }, [currentPage]);
-
-  const minimizeString = (text: string) =>
-    text.length > 128 ? text.slice(0, 127).concat("...") : text;
 
   return (
     <div className="container mx-auto">
@@ -35,34 +32,20 @@ const Posts = () => {
           <div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-8 gap-4">
               {posts.posts.map((post: PostState) => (
-                <div
-                  className="flex flex-col border border-gray-300 p-4 gap-2"
+                <Link
+                  className="flex hover:bg-gray-200"
                   key={post.id}
+                  to={`/posts/${post.id}`}
                 >
-                  <Link
-                    className="flex-1 text-lg font-bold hover:underline"
-                    to={`/posts/${post.id}`}
-                  >
-                    {post.title}
-                  </Link>
-                  <p className="text-gray-500 text-justify">
-                    {minimizeString(post.body)}
-                  </p>
-                  <div className="flex items-center gap-2 font-bold">
-                    <BsHandThumbsUp className="w-4 h-4" />
-                    {post.reactions}
-                  </div>
-                  <div className="flex gap-2">
-                    {post.tags.map((tag: string, i: number) => (
-                      <span
-                        className="px-2 bg-sky-500 rounded text-white"
-                        key={i}
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+                  <PostCard
+                    id={post.id}
+                    title={post.title}
+                    body={post.body}
+                    reactions={post.reactions}
+                    tags={post.tags}
+                    minimize={true}
+                  />
+                </Link>
               ))}
             </div>
             <Pagination
