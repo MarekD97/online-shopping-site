@@ -36,9 +36,6 @@ const Categories = () => {
       });
   }, [selectedCategory]);
 
-  const capitalize = (text: string) =>
-    text.charAt(0).toUpperCase() + text.slice(1);
-
   return (
     <div className="container mx-auto flex flex-col gap-4 sm:flex-row">
       <div className="flex flex-col py-10">
@@ -61,10 +58,10 @@ const Categories = () => {
               key={index}
             >
               <button
-                className="hover:underline"
+                className="hover:underline capitalize"
                 onClick={() => setSelectedCategory(category)}
               >
-                {capitalize(category)}
+                {category}
               </button>
             </div>
           ))
