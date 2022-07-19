@@ -13,6 +13,7 @@ const Categories = () => {
 
   const [categories, setCategories] = useState<string[]>([]);
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [collapsed, setCollapsed] = useState(true);
 
   useEffect(() => {
     fetch("https://dummyjson.com/products/categories")
@@ -36,13 +37,21 @@ const Categories = () => {
       });
   }, [selectedCategory]);
 
+  const handleCategoryClick = (category: string) => {
+    setSelectedCategory(category);
+    setCollapsed(true);
+  };
+
   return (
-    <div className="container mx-auto flex flex-col gap-4 sm:flex-row">
+    <div className="container mx-auto flex flex-col gap-4">
       <div className="flex flex-col py-10">
-        <div className="bg-sky-500 flex gap-2 whitespace-nowrap p-4 text-white">
+        <button
+          className="bg-sky-500 flex gap-2 whitespace-nowrap p-4 text-white"
+          onClick={() => setCollapsed((prev) => !prev)}
+        >
           <BsListUl style={{ width: "24px", height: "24px" }} />
           Browse By Category
-        </div>
+        </button>
         {categories === undefined || categories.length === 0 ? (
           <div className="bg-sky-100 p-4 border-t border-gray-300">
             <CircularLoadingIndicator />
@@ -54,12 +63,12 @@ const Categories = () => {
                 selectedCategory === category
                   ? "bg-sky-500 text-white"
                   : "bg-sky-100 "
-              }`}
+              } ${collapsed && selectedCategory !== category && "hidden"}`}
               key={index}
             >
               <button
                 className="hover:underline capitalize"
-                onClick={() => setSelectedCategory(category)}
+                onClick={() => handleCategoryClick(category)}
               >
                 {category}
               </button>
