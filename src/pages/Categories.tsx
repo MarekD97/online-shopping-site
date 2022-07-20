@@ -8,7 +8,7 @@ import { setProducts } from "../features/products/productsSlice";
 import ProductCart from "../features/products/ProductCart";
 
 const Categories = () => {
-  const products = useAppSelector((state) => state.products);
+  const { products } = useAppSelector((state) => state.products);
   const dispatch = useAppDispatch();
 
   const [categories, setCategories] = useState<string[]>([]);
@@ -33,7 +33,7 @@ const Categories = () => {
     fetch(`https://dummyjson.com/products/category/${selectedCategory}`)
       .then((res) => res.json())
       .then((res) => {
-        dispatch(setProducts(res.products));
+        dispatch(setProducts(res));
       });
   }, [selectedCategory]);
 

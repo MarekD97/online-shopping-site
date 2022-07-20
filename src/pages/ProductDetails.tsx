@@ -13,7 +13,7 @@ const ProductDetails = () => {
   const { id } = useParams();
 
   const product = useAppSelector((state) =>
-    state.products.find((element) => element.id === Number(id))
+    state.products.products.find((element) => element.id === Number(id))
   );
   const cart = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();

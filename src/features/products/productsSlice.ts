@@ -15,23 +15,42 @@ export interface ProductState {
   images: string[];
 }
 
-const initialState: ProductState[] = [];
+export interface ProductsState {
+  products: ProductState[];
+  total: number;
+  skip: number;
+  limit: number;
+}
+
+const initialProductsState: ProductState[] = [];
+
+const initialState = {
+  products: initialProductsState,
+  total: 0,
+  skip: 0,
+  limit: 0,
+};
 
 export const productsSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
-    setProducts: (state, action: PayloadAction<ProductState[]>) => {
-      return action.payload;
+    setProducts: (state, action: PayloadAction<ProductsState>) => {
+      const { products, total, skip, limit } = action.payload;
+      state.products = products;
+      state.total = total;
+      state.skip = skip;
+      state.limit = limit;
     },
     clearProducts: (state, action: PayloadAction) => {
-      return [];
+      return initialState;
     },
     addProduct: (state, action: PayloadAction<ProductState>) => {
-      return [...state, action.payload];
+      const newProduct = action.payload;
+      state.products.push(newProduct);
     },
     deleteProduct: (state, action: PayloadAction<number>) => {
-      return state.filter(({ id }) => id !== action.payload);
+      state.products = state.products.filter(({ id }) => id !== action.payload);
     },
   },
 });

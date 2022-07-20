@@ -17,7 +17,7 @@ const SearchBar = () => {
     event.preventDefault();
     fetch(`https://dummyjson.com/products/search?q=${state}`)
       .then((res) => res.json())
-      .then((res) => dispatch(setProducts(res.products)));
+      .then((res) => dispatch(setProducts(res)));
   };
 
   return (

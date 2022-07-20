@@ -8,11 +8,11 @@ import { setProducts } from "../features/products/productsSlice";
 import Pagination from "../components/Pagination";
 
 const Products = (): JSX.Element => {
-  const products = useAppSelector((state) => state.products);
+  const { products, total } = useAppSelector((state) => state.products);
   const dispatch = useAppDispatch();
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [total, setTotal] = useState(0);
+  const [loaded, setLoaded] = useState(false);
 
   const skip = (currentPage - 1) * 24;
 
@@ -20,8 +20,8 @@ const Products = (): JSX.Element => {
     fetch(`https://dummyjson.com/products?limit=24&skip=${skip}`)
       .then((res) => res.json())
       .then((res) => {
-        dispatch(setProducts(res.products));
-        setTotal(res.total);
+        dispatch(setProducts(res));
+        setLoaded(true);
       });
   }, [currentPage]);
   return (
@@ -29,7 +29,11 @@ const Products = (): JSX.Element => {
       <div className="flex flex-col sm:flex-row gap-4">
         {products === undefined || products.length == 0 ? (
           <div className="grid justify-center my-8 mx-auto">
-            <CircularLoadingIndicator />
+            {!loaded ? (
+              <CircularLoadingIndicator />
+            ) : (
+              <h3 className="text-lg font-semibold">No products found</h3>
+            )}
           </div>
         ) : (
           <div>
